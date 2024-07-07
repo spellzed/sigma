@@ -1,0 +1,58 @@
+name: value_placeholder_pipeline
+vars:
+  candiru_driver_list:
+    - C:\Windows\System32\migration\netiopmig.dll
+    - C:\Windows\System32\migration\sppvmig.dll
+    - C:\Windows\System32\migration\spvmig.dll
+    - C:\Windows\System32\ime\imejp\imjpueact.dll
+    - C:\Windows\System32\ime\imejp\imjpuexp.dll
+    - C:\Windows\System32\ime\imetc\imtcprot.dll
+    - C:\Windows\System32\ime\shared\imccphd.dll
+    - C:\Windows\System32\ime\shared\imebrokev.dll
+    - C:\Windows\System32\ime\shared\imecpmeid.dll
+    - C:\Windows\System32\ime\shared\imepadsvd.dll
+    - C:\Windows\System32\migration\imjprmig.dll
+    - C:\Windows\System32\wbem\dmwmibridgeprov132.dll
+    - C:\Windows\System32\wbem\esscli32.dll
+    - C:\Windows\System32\wbem\netdacim32.dll
+    - C:\Windows\System32\wbem\netpeerdistcim32.dll
+    - C:\Windows\System32\wbem\viewprov32.dll
+    - C:\Windows\System32\wbem\vsswmi32.dll
+    - C:\Windows\System32\wbem\wbemcore32.dll
+    - C:\Windows\System32\wbem\wbemdisp32.dll
+    - C:\Windows\System32\wbem\wbemsvc32.dll
+    - C:\Windows\System32\wbem\wfascim32.dll
+    - C:\Windows\System32\wbem\win32_encryptablevolume32.dll
+    - C:\Windows\System32\wbem\wmiaprpl32.dll
+    - C:\Windows\System32\migration\netiopmig.dll.inf
+    - C:\Windows\System32\migration\sppvmig.dll.inf
+    - C:\Windows\System32\migration\spvmig.dll.inf
+    - C:\Windows\System32\ime\imejp\imjpueact.dll.inf
+    - C:\Windows\System32\ime\imejp\imjpuexp.dll.inf
+    - C:\Windows\System32\ime\imetc\imtcprot.dll.inf
+    - C:\Windows\System32\ime\shared\imccphd.dll.inf
+    - C:\Windows\System32\ime\shared\imebrokev.dll.inf
+    - C:\Windows\System32\ime\shared\imecpmeid.dll.inf
+    - C:\Windows\System32\ime\shared\imepadsvd.dll.inf
+    - C:\Windows\System32\migration\imjprmig.dll.inf
+    - C:\Windows\System32\wbem\dmwmibridgeprov132.dll.inf
+    - C:\Windows\System32\wbem\esscli32.dll.inf
+    - C:\Windows\System32\wbem\netdacim32.dll.inf
+    - C:\Windows\System32\wbem\netpeerdistcim32.dll.inf
+    - C:\Windows\System32\wbem\viewprov32.dll.inf
+    - C:\Windows\System32\wbem\vsswmi32.dll.inf
+    - C:\Windows\System32\wbem\wbemcore32.dll.inf
+    - C:\Windows\System32\wbem\wbemdisp32.dll.inf
+    - C:\Windows\System32\wbem\wbemsvc32.dll.inf
+    - C:\Windows\System32\wbem\wfascim32.dll.inf
+    - C:\Windows\System32\wbem\win32_encryptablevolume32.dll.inf
+    - C:\Windows\System32\wbem\wmiaprpl32.dll.inf
+    - C:\Windows\System32\drivers\HW.sys
+    - C:\Windows\System32\drivers\HW.sys.dat
+  lazarus_scout_MD5_list:
+    - hash
+transformations:
+  - type: value_placeholders
+    include:
+      - candiru_driver_list
+      - lazarus_scout_MD5_list

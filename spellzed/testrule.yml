@@ -1,0 +1,49 @@
+title: 
+id: 
+description: Detects 
+status: experimental 
+author: JQ
+date: 
+modified: 
+level: 
+action: 
+---
+logsource:
+    category: process_creation #Channel: Microsoft-Windows-Sysmon/Operational EventID: 1
+    product: windows
+detection:
+    selection_plain: #selections can be named anything you want
+        CommandLine|contains:
+            - ' -NoP '  
+            - ' -W Hidden ' 
+    selection_parent_child: #parent-child process relationship
+        ParentImage|contains: #ParentImage|contains (WINWORD.EXE OR EXCEL.EXE) AND Image|contains
+            - '\WINWORD.EXE'
+            - '\EXCEL.EXE'
+        Image|contains:
+            - '\wscript.exe'
+            - '\cscript.exe'
+    selection_webshells: 
+        Image|contains:
+            - '\apache*'
+            - '\tomcat*'
+        CommandLine|contains:
+            - 'whoami'
+            - 'net user '
+    selection_whoami:
+        Image|contains: '\whoami.exe'
+        User|contains: 
+            - 'AUTHORI'
+            - 'AUTORI'
+    filter:
+        DestinationHostname|endswith:
+            - .windowsupdate.com
+    condition: 1 of selection* and not (filter*)
+
+
+# Naming of keywords
+# The naming of the field "keywords" under the detection and selection fields is arbitrary.
+# However, you should use it as a standard when creating your own Sigma rules.
+
+# naming convention of "ParentImage" or "Image"?
+# https://github.com/SigmaHQ/sigma-specification/blob/main/Taxonomy_specification.md#log-sources

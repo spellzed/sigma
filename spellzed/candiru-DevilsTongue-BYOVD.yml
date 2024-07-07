@@ -1,0 +1,29 @@
+title: Candiru DevilsTongue BYOVD
+id: uuid
+status: experimental 
+description: Detects 
+references: 
+  - https://decoded.avast.io/janvojtesek/the-return-of-candiru-zero-days-in-the-middle-east/
+author: jq
+date: 2024/07/02
+tags: 
+  - attack.privilege escalation # Exploitation for Privilege Escalation # "Sigma tag must start with namespace separated with dot from remaining tag."
+logsource:
+  product: windows
+  category: driver_load
+detection: 
+  selection_driver_list: 
+    ImageLoaded|expand: "%candiru_driver_list%"
+    Signed: true
+    SignatureStatus: Valid
+  selection_driver_name: 
+    ImageLoaded|endswith: HW.sys
+    Signed: true
+    SignatureStatus: Valid
+  filter:
+    ImageLoaded|endswith: 
+      - legitimate.dll # examples
+      - legitimate.sys
+  condition: 1 of selection* and not filter
+falsepositives:
+level:

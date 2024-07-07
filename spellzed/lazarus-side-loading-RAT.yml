@@ -1,0 +1,32 @@
+title: Lazarus Side Loading Fake Recruitment RAT
+id: uuid
+related:
+    - id: 24007168-a26b-4049-90d0-ce138e13a5cf
+status: experimental 
+description: Detects potential Lazarus Group backdoors utilizing side-loading previously observed in recruitment-themed spearphishing attacks.
+references:
+    - https://www.welivesecurity.com/en/eset-research/lazarus-luring-employees-trojanized-coding-challenges-case-spanish-aerospace-company/
+author: Jun 
+date: 2024/06/29
+tags:
+    - T1204.002 # User Execution: Malicious File 
+    - T1574.002 # Hijack Execution Flow: DLL Side-Loading
+logsource:
+    category: image_load #Channel: Microsoft-Windows-Sysmon/Operational EventID: 7
+    product: windows
+detection:
+    selection_NickelLoader:
+        Image|endswith: PresentationHost.exe
+        ImageLoaded|endswith: mscoree.dll                 
+    selection_miniBlindingCan:
+        Image|endswith: colorcpl.exe
+        ImageLoaded|endswith: colorui.dll
+    selection_LightlessCan_Lua:
+        Image|endswith: fixmapi.exe
+        ImageLoaded|endswith: mapistub.dll    
+    selection_LightlessCan_MZC8051:
+        Image|endswith: tabcal.exe
+        ImageLoaded|endswith: HID.dll     
+    condition: 1 of selection* # 1 of the selections is sufficent 
+falsepositives: Specific applications may use these .exe/.dll combinations
+level: medium

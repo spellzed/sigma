@@ -1,0 +1,17 @@
+title:
+id:
+status:
+description:
+references: 
+author:
+date:
+tags:
+logsource:
+detection:
+  selection: 
+  
+  condition:
+falsepositives:
+level:
+
+# attempt to make an azure rule since you cant show the internal one 

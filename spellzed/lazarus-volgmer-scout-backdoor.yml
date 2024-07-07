@@ -1,0 +1,32 @@
+title: Lazarus Volgmer Scout Backdoor
+id: uuid
+status: experimental
+description: Detects registry keys created in Lazarus Volgmer and Scout backdoor attacks
+references: https://asec.ahnlab.com/en/57685/
+author: jq
+date: 2024/07/03
+tags:
+    - attack.defense_evasion
+    - attack.t1112
+logsource:
+    product: windows
+    category: registry_event
+detection:
+    selection_volgmer_dropper: 
+        TargetObject|contains:
+            - \Control\WMI\Security\125463f3-2a9c-bdf0-d890-5a98b08d8898
+            - \Control\WMI\Security\f0012345-2a9c-bdf8-345d-345d67b542a1
+    selection_volgmer_downloader: 
+        TargetObject|contains:
+            - Control\WMI\Security\2d54931A-47A9-b749-8e23-311921741dcd
+            - Control\WMI\Security\c72a93f5-47e6-4a2a-b13e-6AFE0479cb01       
+    selection_volgmer2.0_scout_dropper: 
+        TargetObject|endswith:
+            # HKLM\SYSTEM\CurrentControlSet\Control\WMI\Security\626e7376-5903-ed41-902f-e93a29dafef5
+            - 5903-ed41-902f-e93a29dafef5
+            # HKLM\SYSTEM\CurrentControlSet\Control\WMI\Security\626e7376-2790-10f2-dd2a-d92f482d094f
+            - 2790-10f2-dd2a-d92f482d094f
+    condition: 1 of selection
+falsepositives:
+level:
+
